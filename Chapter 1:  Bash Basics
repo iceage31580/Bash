@@ -1,1 +1,42 @@
+Bash is a commnad language interpreter that provides an environemnt in which users can execute commands and run applications. 
+
+
+Enviornmental Setup
+
+Accessing the BASH shell: 
+
+  Kali & MacOS use Z Shell by default, so when you open a new terminal window, you'll have to enter exec bash to switch to a bash shell before you run commands. 
+
+  If you want to change your default shellto bash so you don't have to manually switch shells, you can use the chsh -s /bin/bash command. 
+
+  If you're running Windows, you can use the Windows subsystem for Linux(WSL), which lets you run Linux distributions and access a bash environment. 
+
+  An alternative to WSL is Cygwin, which emulates a Linux environmentby providing a colleciton of Linux utilites and system-call functionalities. 
+
+Installing a Text Editor 
+
+  To start writing scripts, you'll need a text editor, preferably one with handy features such as syntax highlighting built in. 
+
+  You can choose between terminal-based editors or graphical user interface-based text editors. 
+
+    Terminal-based text editors: vi or GNU nano
+
+    Graphical text editor: Sublime text. 
+
+Exploring the Shell
+
+  Enter the following command to verify that bash is available on your system: 
+
+    $ bash --version
+
+  Checking Environment Variables
+
+    When running in terminal, bash loads a set of environment variables with every new session that gets invoked. 
+
+    To see the list of environment variables set by bash, run the env command directly from the shell
+
+    $ env
+
+    You can read individual environment variables by using the (page 3) 
+
 
