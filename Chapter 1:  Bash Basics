@@ -7,7 +7,7 @@ Accessing the BASH shell:
 
   Kali & MacOS use Z Shell by default, so when you open a new terminal window, you'll have to enter exec bash to switch to a bash shell before you run commands. 
 
-  If you want to change your default shellto bash so you don't have to manually switch shells, you can use the chsh -s /bin/bash command. 
+  If you want to change your default shell to bash so you don't have to manually switch shells, you can use the chsh -s /bin/bash command. 
 
   If you're running Windows, you can use the Windows subsystem for Linux(WSL), which lets you run Linux distributions and access a bash environment. 
 
@@ -37,6 +37,36 @@ Exploring the Shell
 
     $ env
 
-    You can read individual environment variables by using the (page 3) 
+    You can read individual environment variables by using the echo command, which writes text to the terminal. 
+
+    For example, to print the default shell for the user, use the SHELL environment variable preceded by a dollar sign. ($) and surrounded by curly brackets ({}). 
+
+    $ echo ${shell}
+
+    Some default environment variables available: 
+
+    BASH_VERSION: The bash version running
+
+    BASHPID: The process identifier (PID) of the current bash process
+
+    GROUPS: A list of groups the running user is a member of
+
+    HOSTNAME: The name of the host
+
+    OSTYPE: The type of operating system
+
+    PWD: The current working directory 
+
+    RANDOM: A random number from 0 to 32767
+
+    UID: The user ID (UID) of the current user
+
+    SHELL: The full pathname to the shell
+
+$ echo {random}
+
+$ echo {UID}
+
+$ echo {OSTYPE} (Page 4) 
 
 
