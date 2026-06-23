@@ -63,10 +63,43 @@ Exploring the Shell
 
     SHELL: The full pathname to the shell
 
-$ echo {random}
+    $ echo {random}
 
-$ echo {UID}
+    $ echo {UID}
 
-$ echo {OSTYPE} (Page 4) 
+    $ echo {OSTYPE} (Page 4) 
+
+    These commands generate a random number, output the current user's ID, and display the operating system type, respectively. 
+
+Running Linux Commands
+
+  You can insert the man(manual commmand) before any Linux command to open a terminal-based guide that explains the command's use and options. 
+
+    $ man ls 
+
+    Linux commands can accept many types of input on  the command line. 
+
+    Arguements are passed on the command line by using either short-form or long-form argument syntax, depending on the cmmand in use. 
+    Short-form syntax uses a single dash (-) followed by one or more characters. 
+
+    $ ls -1
+
+    Some commands let you supply multiple arguments by joining them together or listing them separately: 
+
+    $ ls -la
+    $ ls -l -a 
+
+    Note that some commands may throw errors if you attempt to join two arguments with a single dash. 
+
+    Some command options may allow you to use long-form argument syntax, such as the --helpcommand to list the available options. 
+    Long-form argument syntax is prepended by the double dash symbol (--).
+
+    $ ls --help
+
+    Sometimes the command argument supports both short- and long-form argument syntax for convenience. 
+    However, you could also pass the argement --all, and the outcome would be identical. 
+
+    ls -a
+    ls --all. (Page 5) 
 
 
