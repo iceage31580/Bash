@@ -102,4 +102,49 @@ Running Linux Commands
     ls -a
     ls --all. (Page 5) 
 
+    First, create a single directory with mkdir:
+
+    mkdir directory1
+
+      creates a directory named directory1
+
+    mkdir directory2 directory3
+
+      creates two more directories 
+
+    ps -e -f
+    ps -ef
+
+      This lists the processes. Both commands with their respective flags are valid. 
+
+    df
+
+      Readable disk space
+
+Elements of a bash script
+
+    https://google.github.io/styleguide/shellguide.html
+
+    Style guide for shell.
+
+  The Shebang line
+
+    Every script should begin with the shebang line, a character sequence that starts with the hash and exclamation marks (#!) followed by the full path to the script 
+    interpreter. 
+
+    #!/bin/bash
+
+      The bash interpreter is typically located at /bin/bash. If you instead wrote scripts to python and ruby , your shebang line would include the full path to the python
+      or ruby interpreter. 
+
+      You'll sometimes encounter bash scripts that use a shebang line like this one:
+
+        #!/usr/bin/env bash
+
+      This shebang line is portable. (Page 7). 
+
+
+
+
+
 
