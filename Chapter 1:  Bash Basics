@@ -143,6 +143,32 @@ Elements of a bash script
 
       This shebang line is portable. (Page 7). 
 
+      Some Linux distributions place the bash interpreter in different system locations, and this shebang line will attempt to find that location. 
+      This approach could be partcularly useful in penetration tests, where you might not know the location of the bash interpreter on the target machine. 
+
+      The shebang line can also take optional arguments to change how the script executes. 
+
+      #!/bin/bash -x
+
+      This option prints all commands and their arguments as they are executed to the terminal. 
+
+      #!/bin/bash -r 
+
+      This option creates a restricted bash shell, which restricts certain potentially dangerous commands that could for example, navigate to certain directories, 
+      change sensitive environment variables, or attempt to trun off the restricted shell from within the script. 
+
+      Specifiyng an argument within the shebang line requires modifying the script, but you can also pass the arguements to the bash interpreter by using this syntax
+
+
+      bash -r myscript.sh
+
+      Whether you pass arguments to the bash interpreter on the command line or on the shebang line won't make a difference. The command line option is just an 
+      easier way to trigger different methods. 
+
+Comments
+
+      Comments are parts of a script that the bash interpreter won't treat as code and that can improve the readability of a program. (page 7).
+
 
 
 
