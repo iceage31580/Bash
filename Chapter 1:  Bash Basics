@@ -169,7 +169,45 @@ Comments
 
       Comments are parts of a script that the bash interpreter won't treat as code and that can improve the readability of a program. (page 7).
 
+      Comments in bash start with a hash mark(#). 
 
+      #!/bin/bash
+
+      #This is my first script 
+
+      Except for the shebang line, every line that starts with a hash mark is considered a comment. If you wrote the shebang line twice, bash should consider the           second one to be a comment. 
+
+      To write a multiline comment, precede each individual line with the hash mark. 
+
+      #/bin/bash
+
+      #This is my first script!
+      #Bash scripting is fun...
+
+Commands
+
+      Scripts can be as short as two lines: the shebang line and a Linux command. 
+
+      #!/bin/bash
+
+      echo "Hello World!"
+
+      In this exampel, we use the shebang line statement to specify the interpreter of choice, bash. Then we use the echo command to print the string Hello World! to       the screen. 
+
+Execution
+
+    To run the script, save the file as helloworld.sh, open the terminal, and navigate to the home directory where the script resides. If you saved the file here, 
+    run these commands: 
+
+    cd ~ 
+    chmod u+x helloworld.sh
+    ./helloworld.sh
+
+    1. We use the cd command to change directories.
+    2. The tilde (~) represents the home directory of the current running user. 
+    3. Next, we use chmod to set the executable (u+x) permissions for the user who owns the file(in this case, us). 
+    4. We run the script bu using dot-slash notation (./) followed by the script's name. 
+    5. The dot (.) represents the current directory, so we're essentially telling bash to run hellowworld.sh from the current working directory. (Page 9)
 
 
 
