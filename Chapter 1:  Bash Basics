@@ -209,6 +209,40 @@ Execution
     4. We run the script bu using dot-slash notation (./) followed by the script's name. 
     5. The dot (.) represents the current directory, so we're essentially telling bash to run hellowworld.sh from the current working directory. (Page 9)
 
+    bash helloworld.sh
+
+    Because we specified the bash command, the script wil run using the bash interpreter and won't require a shebang line. 
+    Also if you use the bash command, the script doesn't have to be set with an executable permission(+x). 
+
+Debugging
+
+  Errors will inevitably occur when you're developing bash scripts. Luckily, debugging scripts is quite intuitive. An easy way to check for errors easily is by using   the -n parameter when running a script. 
+
+  bash - n script.sh
+
+  The parameter will read the commmands in the script but won't execute them, so any syntax errors tht exist will be shown onscreen. You can think of -n as a dry-run 
+  method to test the validity of your syntax. 
+  You can also use the -x parameter to turn on verbose mode, which lets you see comands being executed and will help you debug issues as the script executes in real 
+  time. 
+
+  bash -x script.sh
+
+  If you want to start debugging at a given point in the script, include the set command in the script itself
+
+  #!/bin/bash
+  set -x
+
+  --snip--
+
+  set +x
+
+  You can think of set as a valve that turns a certain option on and off. In this example, the first command sets the debugging mode (set -x), while t he last 
+  command (set +x) disables it. By using set, you can avoid generating a massive amount of noise in your terminal when your script is large and contains a specific 
+  problem area. 
+
+Basic Syntax
+
+  At this point, a two line script that prints the message "Hello World" has been present. (Page 10). 
 
 
 
