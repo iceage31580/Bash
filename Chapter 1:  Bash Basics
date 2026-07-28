@@ -243,6 +243,41 @@ Debugging
 Basic Syntax
 
   At this point, a two line script that prints the message "Hello World" has been present. (Page 10). 
+  You've also learned how to run and debug a script. 
 
+  The most basic bash scripts are just lists of linux commands collected into a single file. 
+  For example, you could write a script that creates resources on a system and then prints information about theses resources to the screen. 
+
+  #!/bin/bash
+  # All this script does is create a directory, create a file 
+  #within the directory, and then list the contents of the directory. 
+
+  mkdir mydirectory
+  touch mydirectory/myfile
+  ls -l mydirectory
+
+  1. We use mkdir to create a directory named mydirectory. 
+  2. Next, we use the touchc command to create a file named myfile within the directory. 
+  3. Finally, we run the ls -l command to list the conetns of mydirectory. 
+
+  The output should look like this:
+
+  -rw-r-r-- 1 user 0 Feb 16 13:37 myfile
+
+  However, this line by line strategy could be improved in several ways. 
+
+  1. When a command runs, bash waits until it finishes before advancing to the next line. If you include a long-running command (such as file-download or large file copy, the remainding commands 
+     won't be executed until that command has completed. 
+  2. We also have yet to implement any checks to validate that all commands have executed correctly. You'll need to write more-intelligent programs to reduce errors during runtime. 
+
+  Writing sophisticated programs oftenr equires using features liek variables, conditions, loops, and tests. 
+
+Variables 
+
+  Every scripting language has variables. Variables are names that we assign to memory locations that hold a value; they act like placeholders or labels. 
+  We can directly assign values to variables, or we can execite bash commands and store their output as variable values to use for various purposes. 
+
+  If you've worked with programming languages, you may know that variables can be of different types, such as integers, strings, and arrays. 
+  In bash, variables are untyped; they're all considered character strings. 
 
 
