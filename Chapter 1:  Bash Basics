@@ -279,5 +279,39 @@ Variables
 
   If you've worked with programming languages, you may know that variables can be of different types, such as integers, strings, and arrays. 
   In bash, variables are untyped; they're all considered character strings. 
+  Even so, you'll see that bash allows you to create arrays, access array elements, or perform arithmetic operations so long the variable value consists of only 
+  numbers. 
 
+  The following rules govern the naming of bash variables.
+
+    The cannot include alphanumeric characters. 
+    They cannot start with a numbe.r 
+    They can contain an underscore. 
+    They cannot contain whitespace. 
+
+  Assigning and Accessing Variables
+
+    Let's assign a variable. 
+    $ book = "black hat bash"
+
+    We create a variable named book and, by using the equal sign (=), assign teh value black hat bash to it. Now we can use this variable in a commad. 
+
+    $ echo "This book's name is ${book}
+    This book's name is black hat bash.
+
+    Uing the ${} syntax makes the code less prone to misinterpration and helps readers understand when a variable starts and ends. 
+    You can also assign the output of a command to a variable by using the command substitution syntax $(), placing the desired command within the parentheses. 
+    This is often used in bash programming. 
+
+    $ root directory=$(ls -ld /)
+    $ echo "${root directory}"
+
+    We assign the value of the  ls -ld / command to a variable named root_directory and then use echo to print the output of the command. 
+    This is one way to get metadata. 
+
+    Note that you shouldn't leave whitespace around the assignment symbol (=) when creating a variable. 
+
+    book = "this is an invalid variable assignment"
+
+    This is considered invalid. (Page 12) 
 
