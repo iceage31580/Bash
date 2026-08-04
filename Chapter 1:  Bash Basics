@@ -315,3 +315,55 @@ Variables
 
     This is considered invalid. (Page 12) 
 
+  Unassigning Variables
+
+    You can unassign assigned variables by using the unset command. 
+
+    $  bbok = "Black Hat Bash"
+    $  unset book
+    $  echo "${book}"
+
+    If you execute these commands in the terminal, no output will be shown after the echo command executes. 
+
+  Scoping variables
+
+    Global variables are those available to the entire program. 
+    But variables in bash can also be scoped so that they are accesible only from within a certain block of code. 
+    These local variables are declared using the local keyword. 
+
+local_scope_variable.sh
+
+    #!/bin/bash 
+
+    PUBLISHER="No Starch Press"
+
+    print_name(){
+    local name
+    name="Black Hat Bash"
+    echo "{name} by ${PUBLISHER}"
+    }
+
+    print_name
+
+    We assign the value No Starch Press to the variable PUBLISHER and then create a function called print_name(). 
+    Within the function, we declare a local variable called name and assign it to the value Black Hat Bash. 
+    Then we call print_name() and attempt to access the name variable as part of a sentence to be printed using echo. 
+
+    The echo command at the end of the script file will result in an empty variable, as the name variable is locally scoped to the print_name() function, 
+    which means that nothing outside the function can access it. 
+    So it will simply return without a value. 
+
+  Arithmetic operators
+
+    Operator Description
+    +        Addition
+    -        Subtraction 
+    *        Multiplication 
+    /        Division
+    %        Modulus
+    +=       Incrementing by a constant
+    -=       Decrementing by a constant 
+
+    You can perform these arithmetic operations in bash in a few ways; using the let command, using the double parentheses syntax $((expression)), or using the 
+    expr command. Page 13. 
+    
