@@ -421,4 +421,73 @@ IP_ADDRESSES[0]="192.168.1.10"
 
     You'll find arrays particularly useful when you need to iterate over values and perform actions agains them, such as a list of IP addresses to scan. 
 
+Streams 
+
+  Streams are files that act as communication channels between a program and its environment. 
+  When you interact with a program (whether a built-in Linux utility such as ls or mkdir or one that you wrote yourself), you're interacting with one or
+  more streams. 
+  Bash has three standard data streams. 
+
+  Standard input
+    (stdin) 
+      Data coming into a program as input 
+        File descriptor number is 0
+  Standard output (
+    (stdout)
+      Data coming out of a program
+        1
+  Standard error
+    (stderr)
+      Errors coming out of a program
+        2
+
+    So far, we've run a few commands from the terminal and written and executed a simple script. 
+    The generated output was sent to the standard output stream (stdout), or in other words, your terminal screen. 
+
+    Scripts can also receive commands as input. 
+    When a script is designed to receive input, it reads it from the standard input stream(stdin). 
+    Finally, scripts may display error messages to the screen due to a bug or syntax errors in the command sent to it. 
+    These messages are sent to the standard error stream. (stderr).
+
+    This command would generate an error: 
+
+mkdir directory1 directory2 directory1
+
+    This is because we pass the directory name directory1 twice on the command line. 
+    So when mkdir runs, it creates directory1 and directory2, then fails on the third argument because at that point, directory1 has already been created. 
+    These types of errores are sent to the standard error stream. 
+
+    Next, we can execute ls -l, which simply lists directories.
+    The result of the ls commmands succeeds without any specific errors, so it is sent to teh standard output stream. 
+
+Control Operators
+
+    &
+      Sends a command to the operator
+
+    &&
+      Used as a logical AND. The second command in the expression will be evaluated only if the first command evaluates to true. 
+
+    ( and )
+      Used for command grouping
+
+    ; 
+      Used as a list terminator. 
+      A command following the terminator will run after the preceding command has finished, regardless of whether it evaluates to true or not. 
+
+    ;; 
+      Ends a case statement
+
+    | 
+      Redirects the output of a command as input into another command
+
+    || 
+      Used as a logical OR. 
+      The second command will run if the first one evaluates to false. 
+
+    The & operator sends a command to the background. 
+    If you have a list of commands to run, sending the first command to the background will allow bash to continue to the nextline even if the previous command   hasn't finished its work. 
+
+#! bin/bash (page 17)
+
     
