@@ -550,3 +550,41 @@ Redirection Operators
 $ echo "Hello World" > output.txt
 
   We redirect the standard output stream to a file named output.txt. (Page 19).
+
+cat output.txt
+
+  Next we'll use the >> operator to append some content to the end of the same file. 
+
+echo "Goodbye!" >> output.txt
+cat output.txt
+
+Hello World!
+Goodbye!
+
+  If we had used > instead of >>, the content of output.txt would have been overwritten completely with Goodbye! text.
+  You can redirect both the standard output stream and the standard error stream to a file by using &>. 
+  This is useful when you don't want to send any output to the screen and instead save everything in a log file. 
+
+ls -l / &> stdout_and_stderr.txt
+
+  To append both the standard output and standard error streams to a file, use the ampersand followed by the double chevron (&>>). 
+  What if we want to send the standard output stream to one file and the standard error stream to another? This is also possible using the streams' file descriptor 
+  numbers. 
+
+ls -l / 1> stdout.txt 2> stderr.txt
+
+  You may sometimes find it useful to redirect the standard errors stream to a file as we've done here, so you can log any errors that occur during runtime. The next 
+  example runs a nonexistent command lzl. This should generate bash errors that will be written into the error.txt file:
+
+lzl 2> error.txt
+cat error.txt
+
+bash: lzl: command not found
+
+  Notice that you don't see the error onscreen because bashs sends the error to teh file instead. 
+  Next, let's use the standard input stream. 
+  The next command supplie sthe contents of output.txt as input to the cat command. 
+
+cat < output.txt (page 20).
+  
+
