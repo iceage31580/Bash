@@ -586,5 +586,53 @@ bash: lzl: command not found
   The next command supplie sthe contents of output.txt as input to the cat command. 
 
 cat < output.txt (page 20).
+
+Hello World!
+Goodbye!
+
+  What if we want to redirect multiple lines to a command?
+  Here document redireciont (<<) can help with this
+
+$ cat << EOF
+  Black Hat Bash
+  by No Starch Press
+EOF
+
+Black Hat Bash 
+No Starch Press
+
+  In this example, we pass multiple lines as input to a command. The EOf in this example acts as a delimiter, marking the start and endpoints of the input. Here document
+  redirection treats the input as if ti were a separate file, preserving line breaks and whitespace.
+
+  The pipe operator (|) redirects the output of one command and uses it as the input of another. For example, we could run the ls command on the root directory and
+  then use another command to extract data from it. 
+
+$ ls -l | grep "bin"
+
+  We use ls to print the content of the root directory into the standard output stream, then use pupe to send it as input to the grep command, which filters out any lines containing the word bin. 
+
+Positional Arguments
+
+  Bash scripts can take positional arguments (also called parameters) passed on the command line. Arguements are especially useful, for example, when you want to develop a program that modifies its behavior 
+  based on input passed on it by another program or user. Arguments can also change features of the script such as output formaat and how verbose it will be during runtime. 
+
+  For example, imagine you develop an exploit and send it to a few colleagues, each of whom will use it against a different IP address. Instead of writing a script and asking the user to modify it with their network information, you can write it to take an IP address argument and then act 
+  against this input to avoid having to modify the soruce code in each case. 
+
+  A bash script can access arguments passed to it on the command line by using variables $1, $2, and so on. 
+  The next script takes in argument (an IP address or Domain Name) and performs a ping test against it by using the ping utility. 
+
+Name of Script: ping_with_arguments.sh
+
+#!/bin/bash
+
+# This script will ping any address provided as an argument
+
+SCRIPT_NAME="{0}"
+TARGET="{1}"
+
+echo "Running the script ${SCRIPT_NAME}..."
+echo "Pinging the target: ${TARGET}..."
+ping "${TARGET}" (Page 21) 
   
 
