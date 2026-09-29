@@ -680,3 +680,81 @@ For instance, the following example groups the arguments into one word.
 3
 
   In most cases, you will want to use "$@" so that every argument is treated as an indvidual word. (Page 22).
+  The following script demonstrates how to use these special variables in a for loop. 
+
+#!/bin/bash
+# change "$@" to "$*" to observe behavior
+for args in "$@"; do
+  echo "${args}
+done
+
+Input Prompting 
+
+  Some bash scripts don't take any arguments during execution. 
+  However, they may need to ask the user for information in an interactive way and have the response feed into their runtime. 
+  In these cases, we can use the read command. 
+  You often see applications use input prompting when attempting to install software, asking the user to enter yes to proceed or no to cancel the operation. 
+
+#!/bin/bash
+
+#takes input from th use rand assigns it to variables 
+echo "What is your first name?"
+read -r firstname
+
+echo "What is your last name?"
+read -r lastname
+
+echo "Your first name is ${firstname} and your last name is ${lastname}
+
+  Save and run this script as input_prompting.sh:
+
+chmod u+x input_prompting.sh
+./input_prompting.sh
+
+What is your first name?
+John
+
+What is your last name?
+Doe
+
+Your first name is John and your last name is Doe
+
+  Notice that you are prompted to enter information that then gets printed. 
+
+Exit Codes
+
+  Bash commands return exit codes, which indicate whether the execution of the command succeeded. 
+  Exit codes fall in the 0 to 255 range, where 0 means success, 1 means failure, 126 means that the command was found but is not executable, and 127 means the command
+  was not found. 
+  The meaning of any other number depends on the specific command being used and its logic. 
+
+Checking Exit Codess
+
+  To see exit codes in action:
+
+#!/bin/bash
+
+# Experimenting with exit codes
+
+ls -l > /dev/null
+echo "The exit code of the ls command was $?"
+
+lzl 2> /dev/null
+echo "The exit code off the non-existing lzl command was: $?"
+
+  We use the special variable $? with the echo command to return the exit codes of the executed commands ls and lzl. 
+  We also redirect their standard output and standard error streams to /dev/null, a special device file that discards any data sent to it. 
+  When you want to silence commands, you can redirect their output to it. 
+
+  You should see the out like the following:
+
+$ ./exit_codes.sh
+
+The exit code of the ls command was : 0
+The exit code of the non-existing lzl command was 127. 
+
+  We recieved two distinct exit codes, one for each command. 
+  The first command returns 0 (success) and teh seocnd returns 127 (command not found). 
+
+
+Warning: Use /dev/null with caution. You may miss out on important errors if you choose to redirect output to it. (Page 24).  
