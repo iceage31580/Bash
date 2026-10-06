@@ -758,3 +758,47 @@ The exit code of the non-existing lzl command was 127.
 
 
 Warning: Use /dev/null with caution. You may miss out on important errors if you choose to redirect output to it. (Page 24).  
+When in doubt, redirect standard streams such as standard output and standard error to a dedicated logfile instead. 
+
+  To understand why you might want to use exit codes, imagine you're trying to download a 1GB file from the internet using bash. It might be wise to first check   whether the file already exists on the file system in case someone ran the script and retrieved it. 
+  Also, you might want to check that you have enough free space on the diskbefore attempting the download.
+By running commands and looking at their returned exit codes, you can decide whether to proceed with the file download. 
+
+Setting a Script's Exit Code
+
+  You can set the exit code by using the exit command followed by the code number.
+
+#!/bin/bash
+
+#sets the exit code of the script to be 223
+
+echo "Exiting with exit code: 223"
+exit 223
+
+  This script can be saved as set_exit_code.sh and run it on the command line. 
+  Then the variable $? to see the exit code it returns. 
+
+chmod u+x set+exit_code.sh
+./set_exit_code.sh
+
+echo $?
+
+  The $? variable can be used to check the returned exit code not only of a script but of individual commands. 
+
+ps -ef
+echo $?
+
+0
+
+Exit codes are important: they can be used in a series of scripts that call one another or within the same script, to control the logical flow of code execution. 
+
+Summary 
+
+  In this chapter, you ran simple linux commands in the Terminal and used man to learn about command options. 
+  You also learned how to pass arguments to scripts and execute a sequence of commands from within scripts. 
+  We covered fundamentals of bash, such as how to write basic programs that use variables, arrays, redirects, exit codes, and arguments. 
+  The chapter also covered how to prompt the user to enter arbitrary information and use it as part of a script's flow. 
+
+
+
+
