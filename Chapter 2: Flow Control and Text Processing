@@ -1,0 +1,10 @@
+This chapter covers bash concepts that can make your scripts more intelligent. You'll learn how to test conditions, use loops, consolidaate code into fucntiosn, send commands to the background and more. 
+You'll also learn some ways of customizing your bash environment for penetration testing. 
+
+Test Operators 
+
+  Bash lests us selectively execute commands when certain conditions are met. 
+  We can use test operators to craft a wide variety of conditions, such as whether one value equals another value, whether a file is of a certaintypem or whether one value is greater than another. 
+  We often rely such tests to determine whether to continue running a block of code, so being able to construct them is fundamental to bash programming. 
+
+  Bash has multiple kinds of test operators. (Page 28). 
