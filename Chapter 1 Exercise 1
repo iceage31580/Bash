@@ -10,7 +10,7 @@ Write a script that does the following
 
 4. Writes your full name to output.txt
 
-5. Makes a backup copy of output.txt, named backup.txt using the cp command (Use man cp if you aren't sure of the command's syntax.
+5. Makes a backup copy of output.txt, named backup.txt using the cp command (Use man cp if you aren't sure of the command's syntax.)
 
 6. Prints the content of  the output.txt file to the standard output stream.
 
