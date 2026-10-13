@@ -6,7 +6,7 @@ Write a script that does the following
 2. Creates a new file named output.txt
 
 3. Writes the current date to output.txt by using the date command. (Bonus points if you can make the date command print the date in the DD-MM-YYY format; 
-   use man date to learn how this works
+   use man date to learn how this works.)
 
 4. Writes your full name to output.txt
 
