@@ -58,8 +58,74 @@ fi
   Note that else is optional, and you may not always need it. 
   Finally, we close the if condition with the fi keyword(which is if reversed). 
 
-Note: In some operating systems, such as those often used in containers, the default shell might not neccessarily be bash. 
-To account for those cases, you may want to use single square brackets ([...]) rather than double to enclose your condition. 
-The use of single brackets meets Portable Operating System Interface standard and should work on almost any UNIX derivative, including Linux. (Page 29).
-  
+  Note: In some operating systems, such as those often used in containers, the default shell might not neccessarily be bash. 
+  To account for those cases, you may want to use single square brackets ([...]) rather than double to enclose your condition. 
+  The use of single brackets meets Portable Operating System Interface standard and should work on almost any UNIX derivative, including Linux. (Page 29).
+
+  Let's see an if condition in practice. 
+  This if condition tests to see whether a file exists and, if not, creates it. 
+
+test_if_file_exists.sh
+
+#!/bin/bash 
+FILENAME="flow_control_with_if.txt"
+
+if [[ -f "${FILENAME}"]]; then 
+  echo "${FILENAME} already exists."
+  exit 1
+else 
+  touch "${FILENAME}"
+fi
+
+  We first create a variable named FILENAME containing the name of the file we need. 
+  This saves from having to repeat the filename in the code. 
+  We then introduce the if statement, which includes a condition that uses the -f file test operator to test for the existence of a file.
+  If this condition is true, we use echo to printot teh screen a message explaining tha the file already exists and then use the status code 1 (failure) to exit the program. 
+  In the else block, which will execute only if the file does not exist, we create the file by using the touch command. 
+
+  Another way of achieving the same outcome is using the NOT operator (!) to check whether a directory doesn't exist and, if it doesn't creates it. 
+  This example has fewer lines of code and eliminates the need for en else block altogether. 
+
+#!/bin/bash 
+FILENAME="flow_control_with_if.txt"
+
+if [[ ! -f "${FILENAME}" ]]; then
+  touch "${FILENAME}"
+fi
+
+  We can use if conditions with other kinds of test operators. 
+  You can create a string comparison test. 
+  It tests whether two variables are by performing string comparison with the equal-to operator (==). 
+
+string_comparison.sh
+
+#!/bin/bash
+VARIABLE_ONE="nostarch"
+VARIABLE_TWO="nostarch"
+
+if [[ "${VARIABLE_ONE}" = "${VARIABLE_TWO}" ]]; then 
+  echo "They are equal!"
+else
+  echo "They are not equal!"
+fi
+
+  The script will compare the two variables, both of which have the value nostarch, and print They are equal! by using the echo command.
+  Next, is an integer comparison test, which takes two integers and checks which one is the larger number. 
+
+integer_comparison.sh
+
+#!/bin/bash
+VARIABLE_ONE="10"
+VARIABLE_TWO="20"
+
+if [[ "${VARIABLE_ONE}" -gt "{VARIABLE_TWO}" ]]; then
+  echo "${VARIABLE_ONE} is greater than ${VARIABLE_TWO}."
+else
+  echo "${VARIABLE_ONE} is less than ${VARIABLE_TWO}."
+fi
+
+  We create two variables, VARIABLE_ONE and VARIABLE_TWO, and assign them values of 10 and 20 respectively. 
+  We then use the -gt operator to compare the two values and print the result based on an integer comparison. 
+
+
 
