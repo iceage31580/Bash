@@ -125,7 +125,7 @@ else
 fi
 
   We create two variables, VARIABLE_ONE and VARIABLE_TWO, and assign them values of 10 and 20 respectively. 
-  We then use the -gt operator to compare the two values and print the result based on an integer comparison. 
+  We then use the -gt operator to compare the two values and print the result based on an integer comparison. (Page 31)
 
 
 
