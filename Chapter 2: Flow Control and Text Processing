@@ -128,4 +128,87 @@ fi
   We then use the -gt operator to compare the two values and print the result based on an integer comparison. (Page 31)
 
 
+Linking Conditions 
 
+  So far, we've used if to check whether a single condition is met. 
+  But as with most programming languages, we can also use the OR (||) and AND(&&) operators to check for multiple conditions at once. 
+
+  For example, what if we want to check that a file exists and that its size is greater than zero?
+
+#!/bin/bash
+
+echo "Hello World!" > file.txt
+
+if [[ -f "file.txt" ]] && [[ -s "file.txt" ]]; then 
+echo "The file exists and its size is greater than zero"
+
+fi
+
+  This code writes content to a file, then checks whether that file exists and whether its sizer is greater than zero. 
+  Both conditions have to be met in order for the echo command to be executed. 
+  If either returns false, nothing will happen. 
+
+#!/bin/bash 
+DIR_NAME="dir_test"
+
+mkdir "${DIR_NAME}
+
+if [[ -f "${DIR_NAME}" ]] || [[ -d "${DIR_NAME}" ]]; then 
+echo "${DIR_NAME} is either a file or directory."
+fi
+
+  This code creates a directory then uses an if condition with the OR (||) operator to check whether the variable is a file (-f) or a directory (-d). 
+  The second condition should evaluate to true, and the echo command should execute. 
+
+Testing Command Success
+
+  We can even test the exit code of commands to determine whether they were successful. 
+
+if command; then
+  # command was successful
+fi
+
+if ! command; then
+  # command was unsuccessful
+fi
+
+  You'll often find yourself using this technique in bash, as comamnds aren't guaranteed to succeed. Failures could happen for reasons such as these
+    A lack of the necessary permissions when creating resources
+    An attempt to execute a command that is not available on the operating system
+    This disk being full when downloading the file
+    The network being down while executing network utilities
+
+$ if touch test123; then
+    echo "OK: file created"
+fi
+
+  We attempted to create a file. 
+  Because the file creation succeeds, we print a message to indicate this. 
+
+Checking subsequent conditions
+
+  If the first if conditions fails, you can check for other conditions by using the elif keyword(short for else if). 
+  To show how this works, we can write a program that checks the arguments passed to it on the command line. 
+
+
+if_elif.sh 
+
+#!/bin/bash
+USER_INPUT="${1}"
+
+if [[ -z "${USER_INPUT" }]]; then 
+  echo "You must provide an argument!"
+  exit 1
+fi
+
+if [[ -f ${USER_INPUT} ]]; then 
+  echo "${USER_INPUT} is a file."
+elif [[ -d "${USER_INPUT} ]]; then 
+  echo "${USER_INPUT} is a directory"
+else
+  echo "${USER_INPUT} is not a file or directory."
+fi
+  
+  We begin with an if statement that checks whether the variable USER_INPUT is null. (Page 33)
+
+    if [[ -z 
