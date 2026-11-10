@@ -238,4 +238,104 @@ fi
 
 
 Functions 
+
+  Functions help us reuse blocks of code so we can avoid repeating them. 
+  They allow us to run multiple commands and other bash code simultaneously by simply entering the function's name. 
+  To define a new function, enter a name for it, followed by parentheses. 
+  Then place the code you would like the funciton to run within curly brackets. 
+
+#!/bin/bash
+
+say_name(){
+  echo "Black Hat Bash"
+}
+
+  Here, we define a function called say_name() that executes a single echo command. 
+  To call a function, simply enter its name: 
+
+say_name
+
+  If the function is not called, teh commands within it won't run. 
+
+Returning Values 
+
+  Like commands and their exit statuses, functions can return values by using the return keyword. 
+  If there is no return statement, the function will return the exit code of the last command it ran. 
+
+
+check_root_functions.sh
+
+#!/bin/bash
+
+# This function checks if the current user ID equals zero. 
+check_if_root() {
+  if [[ "${EUID}" -eq 0 ]]; then
+    return 0
+  else
+    return 1
+  fi
+  }
+
+if check_if_root; then 
+  echo "User is root!"
+else
+  echo "User is not root!"
+fi
+
+  We define the check_if_root() function 
+
+check_if_root()
+
+  Within this function, we use an if condition with an integer comparison test, accessing the environment variable EUID to get the effective running user's ID and checking whether it equals 0. 
+
+if [[ "${EUID} -eq 0 ]]; then
+  return 0
+else
+  return 1
+fi
+
+  If so, the user is root, and the function returns 0; if not it returns 1. 
+
+
+  Next we call the check_if_root function and check if it returned 0, which means the user is root. 
+  Otherwise, we print that the user is not root. 
+
+  Bash scripts that perform privileged actions often check whether the user is root before attempting to install software, create users, delete groups, and so on. 
+  Attempting to perform privileged actions on Linux without the necessary privileges will result in errors, so this check helps handle these cases. 
+
+Accepting Arguments
+
+  Functions can take arguments using the same syntax as passing arguments on the command line. 
+
+
+#!/bin/bash
+
+print_args(){
+  echo "first: ${1}, second: ${2}, third: ${3}
+}
+
+print_args No Starch Press
+
+  To call a function with arguments, enter its name, and the arguments separated by spaces. 
+
+$chmod u+x functions_with_args.sh
+$./function_with_args.sh
+
+first: No, Second: Starch, third: press
+
+Loops and Loop Controls 
+
+  Like many programming languages, bash lets you repeat chunks of code by using loops. 
+  Loops can be particularly useful in your penetration adventures because they can help accomplish tasks such as the following: 
+
+    Continously checking whether the IP address is online after a reboot until the IP address is reponsive. 
+    Iterating through a list of hostnames (for example, to run a specific exploit against each of them or determine whether a firewall is protecting them)
+    Testing for a certain condition and then running a loop when it is met (for example, checking whether a host is online and, if so, performing a brute-force attack against it)
+
+
+The following secitons introduce you to the three kinds of loops in bash (while, until, and for) as well as the break and continue statements for working with loops. 
+
+while (page 35)
+  
+  
   
