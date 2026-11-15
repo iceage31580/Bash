@@ -336,6 +336,115 @@ Loops and Loop Controls
 The following secitons introduce you to the three kinds of loops in bash (while, until, and for) as well as the break and continue statements for working with loops. 
 
 while (page 35)
+
+  In bash, while loops allow you to run a code block until a test returns a successful exit status code. 
+  You might use them in penetration testing to continously perform a port scan on a network and pick up any new hosts that join the network. 
+
+Syntax of a while loop
+
+while some_condition do
+  # Run commands while the condition is true
+done
+
+  This loop starts with the keyword while, followed by an expression that describes the condition. 
+  We then surround the code to be executed with the do and done keywords, which define the start and end of the code block. 
+
+  You can use while loops to run a chunk of code infinitely by using true as the condition; because true always returns a successful exit code, the code will always run. 
+  Let's use a while loop to repeatedly print a command to the screen. 
+
+#/bin/bash
+
+while true; do
+  echo "Looping..."
+  sleep 2
+done
+
+$ chmod u+x basic_while.sh
+$ ./basic_while.sh
+
+Next, let's write a more sophisticated while loop that runs until it finds a specific file ont he filesystem. 
+Use CTRL-C to stop the code from executing at any point. 
+
+
+
+while_loop.sh
+
+#!/bin/bash
+SIGNAL_TO_STOP_FILE="stoploop"
+
+while[[ -f "${SIGNAL_TO_STOP_FILE}" ]]; do
+  echo "The file ${SIGNAL_TO_STOP_FILE} does not exist yet..."
+  echo "checking again in 2 seconds"
+  sleep 2
+done
+
+echo "File was found! Exiting..."
+
+  1. We define a variable representing the name of the file for whcih he while loops looks for using a file test operator.  
+
+SIGNAL_TO_STOP_FILE="stoploop"
+
+  2. The loop won't exit until the condition is satisfied. Once the file is available, the loop will stop, and the script will continue to the next command. 
+
+while [[ -f "${SIGNAL_TO_STOP_FILE}" ]]; do 
+  echo "The file ${SIGNAL_TO_STOP_FILE} does not yet exist..."
+  echo "Checking again in 2 seconds"
+done 
+
+  3. The next command is an echo command that echos that the file has been found. 
+
+echo "File was found! Exiting..."
+
+$ chmod u+x while_loop.sh
+$ ./while_loop.sh
+
+  While the script is running, open a second terminal in the same directory as the script and create the stoploop file, 
+
+touch stoploop
+
+  Once you've done so, you should the see the script break out of the loop. 
+
+  We can use while loops to monitor for filesystem events, such as file creations or deletions, or when a process starts. 
+  This may comin in handy if an applications is suffering from a vulnerability that can only be temporarily abused. 
+
+  For example, consider an application that runs daily at a particular hour and checks whether the file /tmp/update.sh exists; if it does, the application executes it as the root user. 
+  Using a while loop, we can monitor when that application has started and then create the file just in time so our commands are executed by that application. 
+
+until
+
+  Whereas while runs so long as the condition succeeds, until runs so long as it fails. 
+
+until some_condition do
+  # Run some commands until the condition is no longer false
+done
+
+  Here is a script that uses until to run some commands until a file's size is greater than zero (meaning it is not empty). 
+
+until_loops.sh
+
+#!/bin/bash
+FILE="output.txt"
+
+touch "${FILE}"
+until [[ -s "${FILE}" ]]; do
+  echo "{FILE} is empty..."
+  echo "Checking in again in 2 seconds..."
+  sleep 2
+done
+
+echo "{FILE} appears to have some content in it!"
+
+  We first create an empty file, then begin a loop that runs until the file is no longer empty.   
+  Within the loop, we print messages to the terminal,. 
+  Save this file as until_loop.sh and run it. 
+
+$ chmod u+x until_loop.sh
+$ ./until_loop.sh
+
+  At this point, the script has created the file output.txt, but it's an empty file. (Page 38). 
+
   
+
+
   
   
