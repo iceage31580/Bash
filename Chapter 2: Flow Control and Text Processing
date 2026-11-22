@@ -534,9 +534,95 @@ done
 for file in example_file*; do
 
   2. As a reuslt. the loop should iterate over all three files we created earlier. 
-     Within the loop, we use string comparison to (page 40).
-  
+     Within the loop, we use string comparison to check whether the filename is equal to example_file1 because we want to skip this file and not make any changes to it. (page 40).
+     If the conditions is met, we use the continue statement to process to the next iteration leaving the file unmodified. 
+     Later in the loop, we use the echo command with the environment variable ${RANDOM} to generate a random number and write it into the file. 
+
+if [[ "${file}" == "example_file1" ]]; then 
+  echo "Skipping the next file"
+  continue 
+fi
+
+  echo "${RANDOM}" > "${file}"
+done
+
+  Save this script as for_loop_continue.sh and execute it in the same directory as  the three files. 
+
+$ chmod u+x for_loop_continue.sh
+$ ./for_loop_continue.sh
+
+  If you examine the files, you should see that the first file is empty, while the other two contain a random number as a result of the script echoing the value of the ${RANDOM} environment variable into them. 
 
 
-  
+case Statements
+
+  In bash, case statements allow you to test multiple conditions in a cleaner way by using more readable syntax. 
+  Often they help avoid many if conditions, which can become harder to read as they grow in size. 
+
+case statement syntax
+
+case EXPRESSION in 
+  PATTERN1)
+    # Do something if the first condition is met
+;;
+  PATTERN2)
+    # Do something if the second condition is met. 
+;;
+esac
+
+case_ip_address_check.sh 
+
+#!/bin/bash
+IP_ADDRESS="{1}"
+
+case ${IP_ADDRESS} in 
+  192.168.*)
+    echo "Network is 192.168.x.x"
+;;
+  10.0.0.*)
+    echo "Network is 10.0.x.x"
+;;
+*)
+    echo "Could not identify the network"
+;;
+esac
+
+  We define a variable that expects one command line argument to be passed (${1}) and saves it to the IP_ADDRESS variable. 
+  We then use a pattern to check whether the IP_ADDRESS variable starts with 192.168. and a second pattern to check whether it starts with 10.0.
+  We also define a default wildcard pattern using *, which returns a default message to the user if nothing else has matched.
+  Save this file as case_ip_address_check.sh and ru it 
+
+$ chmod u+x case_ip_address_check.sh
+$ ./case_ip_address_check.sh 192.168.12.55
+Network is 192.168.x.x
+
+$ ./case_ip_address_check_sh 212.199.2.2
+Could not identify
+
+  A case statement can be used for a variety of cases. 
+  For example, it can be used to run functions based on the input the user has entered. 
+  Using case statements is a great way to handle the evaluation of multiple conditions without sacrificing the readability of code. 
+
+Text Processing and Parsing 
+
+  One of the most common things you'll find yourself doing in bash is processing text. 
+  You can parse text on the command line by running one-off commands, or use a script to store parsed data in a variable that you can act on in some way. 
+  Both approaches are important in many scenarios. 
+
+Filtering with grep
+
+  The grep command is one of the most popular Linux commands out there today. 
+  We can use grep to filter out information of interest from streams. 
+  At its most basic form:
+
+$ grep "35.237.4.214" log.txt
+
+  This grep command will read the file and extract any lines containing the IP addresses 35.237.4.214 from it. 
+  We can use the grep for multiple patterns simultaneously. 
+  The following backslash pipe (\|) acts as an or condition. 
+
+$ grep "35.237.4.214"\|13.66.139.0" log.txt (Page 43). 
+
+
+
   
